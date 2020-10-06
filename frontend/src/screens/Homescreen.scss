@@ -1,0 +1,10 @@
+.homescreen_products_header {
+  font-family: Open Sans Condensed;
+  font-size: 50px;
+  font-weight: 700;
+  margin-bottom: 3rem;
+
+  @media (max-width: 600px) {
+    font-size: 40px;
+  }
+}
