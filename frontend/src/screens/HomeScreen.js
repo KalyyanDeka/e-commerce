@@ -1,27 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import Products from '../components/Products';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Products from '../components/Products/Products';
+import { listProducts } from '../store/actions/productActions';
+import Message from '../components/Message/Message';
+import Spinner from '../UI/Spinner/Spinner';
 
 import './Homescreen.scss';
 
-// import products from '../products';
-
 const HomeScreen = () => {
-  const [products, setProducts] = useState();
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('http://localhost:5000/api/products/');
-      setProducts(data);
-    };
-
-    fetchProducts();
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
 
   return (
     <>
       <h1 className="homescreen_products_header">Latest Products</h1>
-      <Products products={products} />
+      {loading ? (
+        <Spinner />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <Products products={products} />
+      )}
     </>
   );
 };

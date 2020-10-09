@@ -2,10 +2,10 @@ import React from 'react';
 import './Products.scss';
 import { Link } from 'react-router-dom';
 
-import Rating from './Rating';
+import Rating from '../Rating/Rating';
 
 const Products = ({ products }) => {
-  const displayProducts = (
+  const productCards = (
     <div className="products">
       <div className="products__container">
         {products &&
@@ -39,7 +39,7 @@ const Products = ({ products }) => {
     </div>
   );
 
-  return displayProducts;
+  return productCards;
 };
 
 export default Products;
