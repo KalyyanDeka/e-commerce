@@ -11,7 +11,7 @@ const Products = ({ products }) => {
         {products &&
           products.map((product) => {
             return (
-              <div className="item">
+              <div className="item" key={product._id}>
                 <Link to={`/products/${product._id}`}>
                   <img
                     className="item__image"
