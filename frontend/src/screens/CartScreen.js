@@ -44,7 +44,7 @@ const CartScreen = ({ match, location, history }) => {
           <strong>Shopping Cart</strong>
         </h1>
         {cartItems.length === 0 ? (
-          <Message variant="danger">
+          <Message variant="primary">
             Your cart is empty{'  '}
             <Link to="/">
               <strong>Go Back</strong>
