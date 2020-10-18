@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Products from '../components/Products/Products';
 import { listProducts } from '../store/actions/productActions';
 import Message from '../components/Message/Message';
-import Spinner from '../UI/Spinner/Spinner';
+import Spinner from '../components/UI/Spinner/Spinner';
 
 import './Homescreen.scss';
 

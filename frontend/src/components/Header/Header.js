@@ -1,9 +1,21 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
+import { logout } from '../../store/actions/userActions';
+import { NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <header className="header">
       <Container className="header-container">
@@ -32,12 +44,27 @@ const Header = () => {
             </NavLink>
           </div>
 
-          <div className="user-nav__icon-box">
-            <NavLink to="/cart" className="user-nav__icon">
-              <i className="fas fa-user"></i>
-              Sign In
-            </NavLink>
-          </div>
+          {userInfo ? (
+            <NavDropdown
+              className="navdropdown"
+              title={userInfo.name}
+              id="username"
+            >
+              <LinkContainer to="/profile">
+                <NavDropdown.Item>Profile</NavDropdown.Item>
+              </LinkContainer>
+              <NavDropdown.Item onClick={logoutHandler}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <div className="user-nav__icon-box">
+              <NavLink to="/login" className="user-nav__icon">
+                <i className="fas fa-user"></i>
+                Sign In
+              </NavLink>
+            </div>
+          )}
         </nav>
       </Container>
     </header>

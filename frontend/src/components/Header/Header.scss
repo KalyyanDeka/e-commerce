@@ -99,10 +99,15 @@
   &__icon-box {
     &:not(:last-child) {
       margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
-  &__icon {
+  &__icon,
+  &__icon:active,
+  &__icon:visited {
     font-size: 1rem;
     color: white;
     font-weight: bold;
@@ -117,4 +122,18 @@
       font-size: 0.9rem;
     }
   }
+}
+
+.navdropdown {
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+
+  &:hover {
+    color: rgb(190, 189, 189);
+  }
+}
+
+.nav-link {
+  padding: 0;
 }

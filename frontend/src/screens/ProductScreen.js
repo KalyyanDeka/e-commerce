@@ -12,7 +12,7 @@ import {
 } from 'react-bootstrap';
 import Rating from '../components/Rating/Rating';
 import Message from '../components/Message/Message';
-import Spinner from '../UI/Spinner/Spinner';
+import Spinner from '../components/UI/Spinner/Spinner';
 import {
   listProductDetails,
   productDetailsClear,
