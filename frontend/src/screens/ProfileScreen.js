@@ -33,12 +33,12 @@ const ProfileScreen = ({ history }) => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   useEffect(() => {
+    dispatch(listMyOrders());
     if (!userInfo) {
       history.push('/login');
     } else {
       if (!user.name) {
         dispatch(getUserDetails('profile'));
-        dispatch(listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -131,7 +131,7 @@ const ProfileScreen = ({ history }) => {
               {orders.map((order) => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>{order.createdAt && order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
                   <td>
                     {order.isPaid ? (
