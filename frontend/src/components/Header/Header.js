@@ -65,6 +65,24 @@ const Header = () => {
               </NavLink>
             </div>
           )}
+
+          {userInfo && userInfo.isAdmin && (
+            <NavDropdown
+              className="navdropdown ml-3"
+              title="Admin"
+              id="adminmenu"
+            >
+              <LinkContainer to="/admin/userlist">
+                <NavDropdown.Item>Users</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/admin/productlist">
+                <NavDropdown.Item>Products</NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/admin/orderlist">
+                <NavDropdown.Item>Orders</NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown>
+          )}
         </nav>
       </Container>
     </header>
