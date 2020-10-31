@@ -10,6 +10,7 @@ import {
 } from '../store/actions/userActions';
 import { listMyOrders } from '../store/actions/orderActions';
 import Spinner from '../components/UI/Spinner/Spinner';
+import { USER_UPDATE_PROFILE_RESET } from '../store/constants/userConstants';
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState('');
@@ -33,18 +34,19 @@ const ProfileScreen = ({ history }) => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   useEffect(() => {
-    dispatch(listMyOrders());
     if (!userInfo) {
       history.push('/login');
     } else {
-      if (!user.name) {
+      if (!user || !user.name) {
+        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails('profile'));
+        dispatch(listMyOrders());
       } else {
         setName(user.name);
         setEmail(user.email);
       }
     }
-  }, [dispatch, history, userInfo, user]);
+  }, [dispatch, history, userInfo, user, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
