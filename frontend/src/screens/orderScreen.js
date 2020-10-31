@@ -9,8 +9,11 @@ import Spinner from '../components/UI/Spinner/Spinner';
 import { getOrderDetails, payOrder } from '../store/actions/orderActions';
 import { ORDER_PAY_RESET } from '../store/constants/orderConstants';
 
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ history, match }) => {
   const orderId = match.params.id;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const [sdkReady, setSdkReady] = useState(false);
 
@@ -34,6 +37,9 @@ const OrderScreen = ({ match }) => {
   }
 
   useEffect(() => {
+    if (!userInfo) {
+      history.push('/login');
+    }
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal');
       const script = document.createElement('script');
@@ -56,7 +62,7 @@ const OrderScreen = ({ match }) => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, orderId, successPay, order]);
+  }, [dispatch, orderId, successPay, order, userInfo]);
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult);
