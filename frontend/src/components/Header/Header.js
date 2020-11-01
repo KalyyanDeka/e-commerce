@@ -1,11 +1,13 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import {Route} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import { logout } from '../../store/actions/userActions';
 import { NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import SearchBox from '../SearchBox/SearchBox'
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -23,18 +25,7 @@ const Header = () => {
           <h2 className="logo">Fly Buy</h2>
         </NavLink>
 
-        <form action="#" className="search">
-          <input
-            type="text"
-            className="search__input"
-            placeholder="Search for Products, brands and more"
-          />
-          <button className="search__button">
-            <span className="search__icon">
-              <i className="fas fa-search"></i>
-            </span>
-          </button>
-        </form>
+        <Route render={({history}) => <SearchBox history={history} />} />
 
         <nav className="user-nav">
           <div className="user-nav__icon-box">
