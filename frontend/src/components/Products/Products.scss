@@ -16,7 +16,8 @@
   .item {
     padding: 12px;
     color: black;
-    box-shadow: 4px 4px 16px 0 rgba(63, 43, 43, 0.2);
+    //box-shadow: 4px 4px 16px 0 rgba(63, 43, 43, 0.2);
+    border: 1px solid rgb(228, 226, 226);
     transition: all 0.3s;
 
     // &:hover {

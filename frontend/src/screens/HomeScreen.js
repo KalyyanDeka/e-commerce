@@ -4,8 +4,10 @@ import Products from '../components/Products/Products';
 import { listProducts } from '../store/actions/productActions';
 import Message from '../components/Message/Message';
 import Spinner from '../components/UI/Spinner/Spinner';
+import Paginate from "../components/Paginate"
 
 import './Homescreen.scss';
+import ProductCarousel from '../components/Carousel/ProductCarousel';
 
 const HomeScreen = ({match}) => {
   const keyword = match.params.keyword
@@ -15,7 +17,7 @@ const HomeScreen = ({match}) => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products } = productList;
+  const { loading, error, products, page, pages } = productList;
 
   useEffect(() => {
     dispatch(listProducts(keyword, pageNumber));
@@ -23,13 +25,16 @@ const HomeScreen = ({match}) => {
 
   return (
     <>
-      <h1 className="homescreen_products_header">Latest Products</h1>
+      {!keyword && <ProductCarousel />}
+      {products && <h1 className="homescreen_products_header">Latest Products</h1>}
       {loading ? (
         <Spinner />
       ) : error ? (
         <Message variant="danger">{error}</Message>
-      ) : (
+      ) : (<>
         <Products products={products} />
+        <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
+        </>
       )}
     </>
   );

@@ -5,7 +5,6 @@ import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message/Message';
 import Spinner2 from '../components/UI/spinner2/spinner2';
-import Spinner from '../components/UI/Spinner/Spinner';
 import Backdrop from '../components/UI/backdrop/backdrop';
 import FormContainer from '../components/UI/formContainer/formContainer';
 import {
