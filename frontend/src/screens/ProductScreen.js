@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Meta from "../components/Meta";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -67,6 +68,7 @@ const ProductScreen = ({ history, match }) => {
 
   return (
     <>
+    
       <Link className="btn btn-light my-3" to="/">
         Go Back
       </Link>
@@ -76,6 +78,7 @@ const ProductScreen = ({ history, match }) => {
         <Message variants="danger">{error}</Message>
       ) : (
         <>
+        <Meta title={product.name} />
         <Row>
           <Col md={6}>
             <Image fluid src={product.image} alt={product.name} />
